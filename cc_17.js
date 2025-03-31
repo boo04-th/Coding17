@@ -84,3 +84,42 @@ salesRep.addClient(customer3);
 console.log(salesRep.getDetails());
 console.log(salesRep.getClientTotal("Han Thao Hang"));
 
+// ✅ Task 3: Create a VIPCustomer Class
+class VIPCustomer extends Customer { // Creates a vip customer class that extends properties from the customer class
+  constructor(name, email, vipLevel) { // Takes customer class features and adds vip level that can only be gold or platinum
+    super(name, email);
+    this.vipLevel = vipLevel;
+  }
+
+  // Override total spent to include 10% bonus
+  getTotalSpent() {
+    const baseTotal = super.getTotalSpent();
+    return baseTotal + (baseTotal * 0.1);
+  }
+
+  // Override details to include VIP info
+  getDetails() {
+    return `VIP Customer Name: ${this.name}, Email: ${this.email}, VIP Level: ${this.vipLevel}, Total Spent (with bonus): $${this.getTotalSpent().toFixed(2)}`;
+  }
+}
+
+// Create VIP customers and add purchases
+const VIPCustomer1 = new VIPCustomer("Rachel Nguyen", "rachelnyu@gmail.com", "Platinum");
+const VIPCustomer2 = new VIPCustomer("Quin Khanh", "imquinn@gmail.com", "Gold");
+
+// Adding a purchase to purchase history for VIP customer 1
+VIPCustomer1.addPurchase(4000);
+VIPCustomer1.addPurchase(200);
+
+// Adding a purchase to purchase history for VIP customer 2
+VIPCustomer2.addPurchase(3500);
+VIPCustomer2.addPurchase(2900);
+
+//Logging the VIP customer 1 details to the console
+console.log(VIPCustomer1.getDetails());
+console.log(VIPCustomer2.getDetails());
+
+//Adding  Vip Customers to the Sales Rep
+salesRep.addClient(VIPCustomer1);
+salesRep.addClient(VIPCustomer2);
+
