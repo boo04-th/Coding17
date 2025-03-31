@@ -123,3 +123,24 @@ console.log(VIPCustomer2.getDetails());
 salesRep.addClient(VIPCustomer1);
 salesRep.addClient(VIPCustomer2);
 
+// ✅ Task 4: Client Report System
+
+// Calculate total revenue
+const totalRevenue = salesRep.clients.reduce((total, client) => total + client.getTotalSpent(), 0);
+console.log(`Total Revenue: $${totalRevenue.toFixed(2)}`);
+
+// Filter customers who spent over $500
+const highSpenders = salesRep.clients
+  .filter(client => client.getTotalSpent() > 500)
+  .map(client => client.name); // Using .map to only get the customer names
+
+console.log("High-Spending Customers:", highSpenders);// Logging the client names of those who spent more than $500
+
+// Create array of customer names and total spent
+const customerSpendingOverall = salesRep.clients.map(client => ({
+  Name: client.name,
+  TotalSpent: `$${client.getTotalSpent().toFixed(2)}`
+}));
+
+// Logging the array of customer names and totals spent to the console
+console.log("Customer Spending Overview:", customerSpendingOverall);
